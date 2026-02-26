@@ -249,7 +249,7 @@ OpenEgo provides intention-aligned language primitives that:
 
 ## Download
 
-We will be releasing all the data throughout the coming weeks. A download script will be added soon to facilitate dataset access. In the meantime, please download the datasets via our website at [www.openegocentric.com](https://www.openegocentric.com).
+We will be releasing all the data throughout the coming weeks. A download script will be added soon to facilitate dataset access. In the meantime, please download the datasets on our box: [dataset download link](https://utdallas.box.com/s/1fzj9gr331atfumk5on3bifzpp2idnjr).
 
 ## Project Structure
 
