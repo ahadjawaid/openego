@@ -5,3 +5,5 @@ natsort>=7.0.0
 pillow>=8.0.0
 imageio>=2.9.0
 imageio-ffmpeg>=0.4.0
+tqdm
+requests
