@@ -1,3 +1,4 @@
+import argparse
 import re
 import shutil
 import zipfile
@@ -214,10 +215,23 @@ if __name__ == "__main__":
         "holoassist": ["https://utdallas.box.com/shared/static/5z9lzdi291d2o2pwswhkw1oq4d40pfle.zip", "https://utdallas.box.com/shared/static/jenkpoapzyacywefvefthsbgn8m7l06x.txt", "https://utdallas.box.com/shared/static/y810mcxbiru5i0ewipsnhib7b4uyzxti.txt"],
         "captaincook4d": ["https://utdallas.box.com/shared/static/ekjre07vnripjbkclcahb2h646n9tqju.zip", "https://utdallas.box.com/shared/static/97m6rsrocvsah832rlad5m739revgz0n.zip", "https://utdallas.box.com/shared/static/gt17or1yxvna8pev2fpu3encaf4c78ho.txt", "https://utdallas.box.com/shared/static/h5it87qxzj2aoeclxksjrq4yi5x9czn2.txt"],
     }
+    parser = argparse.ArgumentParser(description="Download OpenEgo data")
+    parser.add_argument(
+        "--benchmarks",
+        nargs="+",
+        default=list(download_links.keys()),
+        help=f"Benchmarks to download. Default: all ({', '.join(download_links.keys())})",
+    )
+    args = parser.parse_args()
+    selected_benchmarks = [b.lower() for b in args.benchmarks]
+    invalid = [b for b in selected_benchmarks if b not in download_links]
+    if invalid:
+        raise ValueError(f"Unknown benchmark(s): {', '.join(invalid)}")
 
     data_dir.mkdir(parents=True, exist_ok=True)
 
-    for benchmark_name, links in download_links.items():
+    for benchmark_name in selected_benchmarks:
+        links = download_links[benchmark_name]
         benchmark_root = data_dir / benchmark_name
         benchmark_root.mkdir(parents=True, exist_ok=True)
 
